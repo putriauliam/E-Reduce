@@ -40,6 +40,8 @@ public class SignUp extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SignUp");
+        setPreferredSize(new java.awt.Dimension(800, 500));
+        setResizable(false);
 
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 500));
         jPanel1.setLayout(null);
@@ -219,6 +221,7 @@ public class SignUp extends javax.swing.JFrame {
                 System.out.println("Error" + e.getMessage());
             
         }
+        
     }//GEN-LAST:event_SignUpBtnActionPerformed
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
