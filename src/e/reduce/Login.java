@@ -46,6 +46,7 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
+        setResizable(false);
 
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 500));
         jPanel1.setLayout(null);
@@ -229,7 +230,7 @@ public class Login extends javax.swing.JFrame {
                         ProfileFrame.setVisible(true);
                         ProfileFrame.pack();
                         ProfileFrame.setLocationRelativeTo(null);
-       this.dispose();
+                        this.dispose();
                     }else{
                         JOptionPane.showMessageDialog(new JFrame(), "Incorrect Email or Password", "Error ",
                             JOptionPane.ERROR_MESSAGE);
