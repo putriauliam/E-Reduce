@@ -45,22 +45,21 @@ public class Profile extends javax.swing.JFrame {
         setTitle("Halaman Profile");
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(211, 236, 202));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(790, 500));
 
-        jPanel2.setBackground(new java.awt.Color(102, 178, 128));
+        jPanel2.setBackground(new java.awt.Color(51, 153, 255));
         jPanel2.setPreferredSize(new java.awt.Dimension(250, 500));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Welcome to Profile");
+        jLabel1.setText("Selamat Datang");
 
         user.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         user.setForeground(new java.awt.Color(255, 255, 255));
         user.setText("Nama User");
 
-        EditProfileBtn.setBackground(new java.awt.Color(211, 236, 202));
-        EditProfileBtn.setText("Edit Profile");
+        EditProfileBtn.setText("Edit Profil");
         EditProfileBtn.setPreferredSize(new java.awt.Dimension(80, 23));
         EditProfileBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,7 +67,6 @@ public class Profile extends javax.swing.JFrame {
             }
         });
 
-        LogoutBtn.setBackground(new java.awt.Color(211, 236, 202));
         LogoutBtn.setText("Logout");
         LogoutBtn.setPreferredSize(new java.awt.Dimension(80, 23));
         LogoutBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -82,18 +80,19 @@ public class Profile extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGap(78, 78, 78)
-                            .addComponent(user))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGap(21, 21, 21)
-                            .addComponent(EditProfileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGap(76, 76, 76)
-                            .addComponent(LogoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(EditProfileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(76, 76, 76)
+                        .addComponent(LogoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(82, 82, 82)
+                        .addComponent(user)))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -132,7 +131,7 @@ public class Profile extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 233, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 234, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(labelnama)
                     .addComponent(txtNama)
