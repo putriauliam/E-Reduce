@@ -83,7 +83,7 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setText("Masuk E-Reduce");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel2.setText("Email :");
+        jLabel2.setText("Email");
 
         email.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         email.addActionListener(new java.awt.event.ActionListener() {
@@ -93,7 +93,7 @@ public class Login extends javax.swing.JFrame {
         });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setText("Kata Sandi :");
+        jLabel3.setText("Kata Sandi ");
 
         password.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         password.addActionListener(new java.awt.event.ActionListener() {
@@ -116,7 +116,7 @@ public class Login extends javax.swing.JFrame {
 
         jButton2.setBackground(new java.awt.Color(0, 102, 255));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Daftar Sekarang");
+        jButton2.setText("Daftar Disini");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);

@@ -32,7 +32,7 @@ public class EditProfile extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(800, 500));
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(102, 178, 128));
+        jPanel1.setBackground(new java.awt.Color(51, 153, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 500));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -65,11 +65,11 @@ public class EditProfile extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Jenis Kelamin     :");
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Edit Profile");
+        jLabel1.setText("Edit Profil");
 
-        jTable1.setBackground(new java.awt.Color(211, 236, 202));
+        jTable1.setForeground(new java.awt.Color(51, 0, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -91,7 +91,6 @@ public class EditProfile extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setBackground(new java.awt.Color(211, 236, 202));
         jButton1.setText("Kembali");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,7 +98,6 @@ public class EditProfile extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(211, 236, 202));
         jButton2.setText("Update");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -170,7 +168,7 @@ public class EditProfile extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 720, Short.MAX_VALUE))
+                .addGap(0, 717, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
