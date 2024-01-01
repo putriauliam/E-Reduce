@@ -3,7 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package e.reduce;
-
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 /**
  *
  * @author lenovo
@@ -195,7 +200,57 @@ public class UbahKataSandi extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+    String kataSandiLama = jTextField1.getText();
+    String kataSandiBaru = jTextField2.getText();
+    String konfirmasiKataSandi = jTextField3.getText();
+    
+    // Kode untuk menghubungkan ke database dan memverifikasi kata sandi lama
+    // Disini, Anda harus menggantikan "username" dengan nama pengguna yang sedang login.
+    String query = "SELECT password FROM user WHERE username = ?";
+    // Gunakan PreparedStatement untuk menghindari SQL injection
+    try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/your_database", "root", "");
+         PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+        
+        preparedStatement.setString(1, "username"); // Gantikan "username" dengan nama pengguna yang sedang login.
+        ResultSet resultSet = preparedStatement.executeQuery();
+        
+        if (resultSet.next()) {
+            String savedPassword = resultSet.getString("password");
+            
+            if (savedPassword.equals(kataSandiLama)) {
+                if (kataSandiBaru.equals(konfirmasiKataSandi)) {
+                    // Jika kata sandi lama cocok dan kata sandi baru sama dengan konfirmasi
+                    String updateQuery = "UPDATE user SET password = ? WHERE username = ?";
+                    try (PreparedStatement updateStatement = connection.prepareStatement(updateQuery)) {
+                        updateStatement.setString(1, kataSandiBaru);
+                        updateStatement.setString(2, "username"); // Gantikan "username" dengan nama pengguna yang sedang login.
+                        
+                        updateStatement.executeUpdate();
+                        
+                        // Pesan sukses
+                        JOptionPane.showMessageDialog(this, "Kata sandi berhasil diperbarui!");
+                        
+                        // Bersihkan isian form
+                        jTextField1.setText("");
+                        jTextField2.setText("");
+                        jTextField3.setText("");
+                    }
+                } else {
+                    // Jika kata sandi baru dan konfirmasi tidak cocok
+                    JOptionPane.showMessageDialog(this, "Kata sandi baru dan konfirmasi tidak cocok!");
+                }
+            } else {
+                // Jika kata sandi lama salah
+                JOptionPane.showMessageDialog(this, "Kata sandi lama salah!");
+            }
+        } else {
+            // Jika pengguna tidak ditemukan
+            JOptionPane.showMessageDialog(this, "Pengguna tidak ditemukan!");
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Terjadi kesalahan saat memperbarui kata sandi!");
+    }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

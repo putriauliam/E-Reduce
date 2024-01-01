@@ -54,14 +54,18 @@ public class Kategori extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Kategori Sampah Elektronik");
 
+
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lampuenggal.png"))); // NOI18N
+
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
+
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/kulkasnewpisan.png"))); // NOI18N
+
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -69,6 +73,7 @@ public class Kategori extends javax.swing.JFrame {
         });
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/laptop_baro.png"))); // NOI18N
+
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Layar dan Monitor");
@@ -126,11 +131,13 @@ public class Kategori extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLabel5)
                     .addComponent(jLabel4))
+
                 .addContainerGap(131, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(0, 0, 800, 540);
+
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
