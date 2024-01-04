@@ -30,8 +30,11 @@ public class Profile extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         user = new javax.swing.JLabel();
-        EditProfileBtn = new javax.swing.JToggleButton();
+        DetailMonitorBtn = new javax.swing.JToggleButton();
         LogoutBtn = new javax.swing.JToggleButton();
+        EditProfileBtn1 = new javax.swing.JToggleButton();
+        ChangePasswordBtn = new javax.swing.JToggleButton();
+        CategoryBtn = new javax.swing.JToggleButton();
         labelnama = new javax.swing.JLabel();
         txtNama = new javax.swing.JLabel();
         labelAlamat = new javax.swing.JLabel();
@@ -59,11 +62,11 @@ public class Profile extends javax.swing.JFrame {
         user.setForeground(new java.awt.Color(255, 255, 255));
         user.setText("Nama User");
 
-        EditProfileBtn.setText("Edit Profil");
-        EditProfileBtn.setPreferredSize(new java.awt.Dimension(80, 23));
-        EditProfileBtn.addActionListener(new java.awt.event.ActionListener() {
+        DetailMonitorBtn.setText("Detail Monitor");
+        DetailMonitorBtn.setPreferredSize(new java.awt.Dimension(80, 23));
+        DetailMonitorBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EditProfileBtnActionPerformed(evt);
+                DetailMonitorBtnActionPerformed(evt);
             }
         });
 
@@ -75,15 +78,36 @@ public class Profile extends javax.swing.JFrame {
             }
         });
 
+        EditProfileBtn1.setText("Edit Profil");
+        EditProfileBtn1.setPreferredSize(new java.awt.Dimension(80, 23));
+        EditProfileBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditProfileBtn1ActionPerformed(evt);
+            }
+        });
+
+        ChangePasswordBtn.setText("Change Password");
+        ChangePasswordBtn.setPreferredSize(new java.awt.Dimension(80, 23));
+        ChangePasswordBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChangePasswordBtnActionPerformed(evt);
+            }
+        });
+
+        CategoryBtn.setText("Category");
+        CategoryBtn.setPreferredSize(new java.awt.Dimension(80, 23));
+        CategoryBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CategoryBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(EditProfileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(76, 76, 76)
                         .addComponent(LogoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -93,7 +117,15 @@ public class Profile extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(82, 82, 82)
                         .addComponent(user)))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(CategoryBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ChangePasswordBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(EditProfileBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DetailMonitorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,9 +134,15 @@ public class Profile extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(71, 71, 71)
-                .addComponent(EditProfileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 225, Short.MAX_VALUE)
+                .addGap(29, 29, 29)
+                .addComponent(EditProfileBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(ChangePasswordBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(CategoryBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(DetailMonitorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                 .addComponent(LogoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
         );
@@ -131,7 +169,7 @@ public class Profile extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 234, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 233, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(labelnama)
                     .addComponent(txtNama)
@@ -192,14 +230,13 @@ public class Profile extends javax.swing.JFrame {
         user.setText(name);
     }
     
-    private void EditProfileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditProfileBtnActionPerformed
-       
-       EditProfile EditProfileFrame = new EditProfile();
-       EditProfileFrame.setVisible(true);
-       EditProfileFrame.pack();
-       EditProfileFrame.setLocationRelativeTo(null);
+    private void DetailMonitorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DetailMonitorBtnActionPerformed
+       DetailMonitor DetailMonitorFrame = new DetailMonitor();
+       DetailMonitorFrame.setVisible(true);
+       DetailMonitorFrame.pack();
+       DetailMonitorFrame.setLocationRelativeTo(null);
        this.dispose();
-    }//GEN-LAST:event_EditProfileBtnActionPerformed
+    }//GEN-LAST:event_DetailMonitorBtnActionPerformed
 
     private void LogoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutBtnActionPerformed
        Login LoginFrame = new Login();
@@ -209,6 +246,30 @@ public class Profile extends javax.swing.JFrame {
        this.dispose();
     }//GEN-LAST:event_LogoutBtnActionPerformed
 
+    private void EditProfileBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditProfileBtn1ActionPerformed
+       EditProfile EditProfileFrame = new EditProfile();
+       EditProfileFrame.setVisible(true);
+       EditProfileFrame.pack();
+       EditProfileFrame.setLocationRelativeTo(null);
+       this.dispose();
+    }//GEN-LAST:event_EditProfileBtn1ActionPerformed
+
+    private void ChangePasswordBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangePasswordBtnActionPerformed
+       UbahKataSandi UbahKataSandiFrame = new UbahKataSandi();
+       UbahKataSandiFrame.setVisible(true);
+       UbahKataSandiFrame.pack();
+       UbahKataSandiFrame.setLocationRelativeTo(null);
+       this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_ChangePasswordBtnActionPerformed
+
+    private void CategoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CategoryBtnActionPerformed
+       Kategori KategoriFrame = new Kategori();
+       KategoriFrame.setVisible(true);
+       KategoriFrame.pack();
+       KategoriFrame.setLocationRelativeTo(null);
+       this.dispose();
+    }//GEN-LAST:event_CategoryBtnActionPerformed
+
     
     
     /**
@@ -217,7 +278,10 @@ public class Profile extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToggleButton EditProfileBtn;
+    private javax.swing.JToggleButton CategoryBtn;
+    private javax.swing.JToggleButton ChangePasswordBtn;
+    private javax.swing.JToggleButton DetailMonitorBtn;
+    private javax.swing.JToggleButton EditProfileBtn1;
     private javax.swing.JToggleButton LogoutBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
