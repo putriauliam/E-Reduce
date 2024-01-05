@@ -33,6 +33,7 @@ public class Profile extends javax.swing.JFrame {
         EditProfileBtn = new javax.swing.JToggleButton();
         LogoutBtn = new javax.swing.JToggleButton();
         Category = new javax.swing.JToggleButton();
+        UbahKataSandi = new javax.swing.JToggleButton();
         labelnama = new javax.swing.JLabel();
         txtNama = new javax.swing.JLabel();
         labelAlamat = new javax.swing.JLabel();
@@ -76,11 +77,19 @@ public class Profile extends javax.swing.JFrame {
             }
         });
 
-        Category.setText("Edit Profil");
+        Category.setText("Category");
         Category.setPreferredSize(new java.awt.Dimension(80, 23));
         Category.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CategoryActionPerformed(evt);
+            }
+        });
+
+        UbahKataSandi.setText("Change Password");
+        UbahKataSandi.setPreferredSize(new java.awt.Dimension(80, 23));
+        UbahKataSandi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UbahKataSandiActionPerformed(evt);
             }
         });
 
@@ -103,7 +112,9 @@ public class Profile extends javax.swing.JFrame {
                             .addComponent(user))
                         .addGroup(jPanel2Layout.createSequentialGroup()
                             .addGap(22, 22, 22)
-                            .addComponent(EditProfileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(UbahKataSandi, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(EditProfileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -113,11 +124,13 @@ public class Profile extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                .addGap(26, 26, 26)
                 .addComponent(Category, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addGap(18, 18, 18)
                 .addComponent(EditProfileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(146, 146, 146)
+                .addGap(18, 18, 18)
+                .addComponent(UbahKataSandi, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 152, Short.MAX_VALUE)
                 .addComponent(LogoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
         );
@@ -231,6 +244,15 @@ public class Profile extends javax.swing.JFrame {
        this.dispose();
     }//GEN-LAST:event_CategoryActionPerformed
 
+    private void UbahKataSandiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UbahKataSandiActionPerformed
+        // TODO add your handling code here:
+       UbahKataSandi UbahKataSandiFrame = new UbahKataSandi();
+       UbahKataSandiFrame.setVisible(true);
+       UbahKataSandiFrame.pack();
+       UbahKataSandiFrame.setLocationRelativeTo(null);
+       this.dispose();
+    }//GEN-LAST:event_UbahKataSandiActionPerformed
+
     
     
     /**
@@ -242,6 +264,7 @@ public class Profile extends javax.swing.JFrame {
     private javax.swing.JToggleButton Category;
     private javax.swing.JToggleButton EditProfileBtn;
     private javax.swing.JToggleButton LogoutBtn;
+    private javax.swing.JToggleButton UbahKataSandi;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
