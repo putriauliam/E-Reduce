@@ -202,7 +202,7 @@ public class Login extends javax.swing.JFrame {
 
     private void LoginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginBtnActionPerformed
         //System.out.println("Sign Up btn Clicked");
-        String name,Email,Password,query,passDb = null, namef = null;
+        String name,Email,Password,query,passDb = null, namef = null, alamat = null, jk = null, nohp = null;
         String SUrl,SUser,SPass;
           SUrl = "jdbc:MySQL://localhost:3306/java_users_db";
           SUser = "root";
@@ -227,12 +227,18 @@ public class Login extends javax.swing.JFrame {
                     while(rs.next()){
                         passDb = rs.getString("password");
                         namef = rs.getString("name");
+                        alamat = rs.getString("Alamat");
+                        jk = rs.getString("jenis_kelamin");
+                        nohp = rs.getString("no_hp");
                         notFound = 1;
                     }
                     if(notFound == 1 && Password.equals(passDb)){
                         
                         Profile ProfileFrame = new Profile();
                         ProfileFrame.setUser(namef);
+                        ProfileFrame.setAlamat(alamat);
+                        ProfileFrame.setJk(jk);
+                        ProfileFrame.setNohp(nohp);
                         ProfileFrame.setVisible(true);
                         ProfileFrame.pack();
                         ProfileFrame.setLocationRelativeTo(null);
