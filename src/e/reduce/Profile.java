@@ -3,6 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package e.reduce;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.PreparedStatement;
 
 /**
  *
@@ -14,8 +19,11 @@ public class Profile extends javax.swing.JFrame {
      * Creates new form Profile
      */
     public Profile() {
+        
         initComponents();
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -109,19 +117,21 @@ public class Profile extends javax.swing.JFrame {
                 .addGap(23, 23, 23))
         );
 
-        labelnama.setText("Nama");
+        labelnama.setText("Nama                 :");
 
+        txtNama.setBackground(new java.awt.Color(51, 153, 255));
         txtNama.setText("Nama Panjang");
+        txtNama.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
 
-        labelAlamat.setText("Alamat");
+        labelAlamat.setText("Alamat               :");
 
         txtAlamat.setText("data alamat");
 
-        labelNohp.setText("No HP");
+        labelNohp.setText("No HP                 :");
 
         txtNotelp.setText("data notelp");
 
-        labelJk.setText("Jenis Kelamin");
+        labelJk.setText("Jenis Kelamin   :");
 
         txtJk.setText("data jenis kelamin");
 
@@ -131,17 +141,25 @@ public class Profile extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 234, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelnama)
-                    .addComponent(txtNama)
                     .addComponent(labelAlamat)
-                    .addComponent(txtAlamat)
                     .addComponent(labelNohp)
-                    .addComponent(txtNotelp)
-                    .addComponent(labelJk)
-                    .addComponent(txtJk))
-                .addGap(212, 212, 212))
+                    .addComponent(labelJk))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNotelp)
+                            .addComponent(txtJk)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtAlamat, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(137, 137, 137))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,22 +167,22 @@ public class Profile extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(103, 103, 103)
-                        .addComponent(labelnama)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNama)
-                        .addGap(27, 27, 27)
-                        .addComponent(labelAlamat)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtAlamat)
-                        .addGap(30, 30, 30)
-                        .addComponent(labelNohp)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNotelp)
-                        .addGap(33, 33, 33)
-                        .addComponent(labelJk)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtJk)))
+                        .addGap(125, 125, 125)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtNama)
+                            .addComponent(labelnama))
+                        .addGap(49, 49, 49)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtAlamat)
+                            .addComponent(labelAlamat))
+                        .addGap(52, 52, 52)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtNotelp)
+                            .addComponent(labelNohp))
+                        .addGap(55, 55, 55)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtJk)
+                            .addComponent(labelJk))))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -188,8 +206,21 @@ public class Profile extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-        public void setUser(String name){
+    public void setUser(String name){
         user.setText(name);
+        txtNama.setText(name);
+    }
+        
+    public void setAlamat(String alamat){
+        txtAlamat.setText(alamat);
+    }
+        
+    public void setJk(String jk){
+        txtJk.setText(jk);
+    }
+    
+    public void setNohp(String nohp){
+        txtNotelp.setText(nohp);
     }
     
     private void EditProfileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditProfileBtnActionPerformed
@@ -232,4 +263,6 @@ public class Profile extends javax.swing.JFrame {
     private javax.swing.JLabel txtNotelp;
     private javax.swing.JLabel user;
     // End of variables declaration//GEN-END:variables
+
+    
 }
