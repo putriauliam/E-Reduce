@@ -206,7 +206,7 @@ public class Login extends javax.swing.JFrame {
         String SUrl,SUser,SPass;
           SUrl = "jdbc:MySQL://localhost:3306/java_users_db";
           SUser = "root";
-          SPass = "";
+          SPass = "root";
           int notFound = 0;
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
