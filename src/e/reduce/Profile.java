@@ -3,12 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package e.reduce;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.PreparedStatement;
-
+import java.sql.Statement;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 /**
  *
  * @author user
@@ -18,10 +21,19 @@ public class Profile extends javax.swing.JFrame {
     /**
      * Creates new form Profile
      */
-    public Profile() {
-        
+private String userEmail;
+
+    public Profile(String email) {
+        this.userEmail = email;
         initComponents();
+        
     }
+    
+    public void setUserEmail(String email) {
+        this.userEmail = email;
+        
+    }
+    
     
     
 
@@ -237,21 +249,57 @@ public class Profile extends javax.swing.JFrame {
         txtNohp.setText(no_hp);
     }
     
+    
     private void EditProfileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditProfileBtnActionPerformed
-       
-       EditProfile EditProfileFrame = new EditProfile();
-       EditProfileFrame.setVisible(true);
-       EditProfileFrame.pack();
-       EditProfileFrame.setLocationRelativeTo(null);
-       this.dispose();
+           String name = null, alamat = null, jeniskelamin = null, no_hp = null, passDb, query;
+    String SUrl, SUser, SPass;
+    int notFound = 0;
+
+    SUrl = "jdbc:MySQL://localhost:3306/java_users_db";
+    SUser = "root";
+    SPass = "";
+
+    try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
+        Statement st = con.createStatement();
+
+        query = "SELECT * FROM user WHERE email= '" + userEmail + "' ";
+        ResultSet rs = st.executeQuery(query);
+
+        while (rs.next()) {
+            passDb = rs.getString("password");
+            name = rs.getString("name");
+            alamat = rs.getString("alamat");
+            jeniskelamin = rs.getString("jeniskelamin");
+            no_hp = rs.getString("no_hp");
+            notFound = 1;
+        }
+
+        if (notFound == 1) {
+            EditProfile EditProfileFrame = new EditProfile(userEmail);
+            EditProfileFrame.setUser(name);
+            EditProfileFrame.setAlamat(alamat);
+            EditProfileFrame.setNohp(no_hp);
+            EditProfileFrame.setJk(jeniskelamin);
+            EditProfileFrame.setVisible(true);
+            EditProfileFrame.pack();
+            EditProfileFrame.setLocationRelativeTo(null);
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(new JFrame(), "Email atau Password Salah", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    } catch (Exception e) {
+        System.out.println("Error: " + e.getMessage());
+    }
     }//GEN-LAST:event_EditProfileBtnActionPerformed
 
     private void LogoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutBtnActionPerformed
-       Login LoginFrame = new Login();
-       LoginFrame.setVisible(true);
-       LoginFrame.pack();
-       LoginFrame.setLocationRelativeTo(null);
-       this.dispose();
+        Login loginFrame = new Login();
+        loginFrame.setVisible(true);
+        loginFrame.pack();
+        loginFrame.setLocationRelativeTo(null);
+        dispose();
     }//GEN-LAST:event_LogoutBtnActionPerformed
 
     private void CategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CategoryActionPerformed
