@@ -118,10 +118,11 @@ public class Profile extends javax.swing.JFrame {
         );
 
         labelnama.setText("Nama                 :");
+        labelnama.setMaximumSize(new java.awt.Dimension(90, 16));
+        labelnama.setMinimumSize(new java.awt.Dimension(90, 16));
 
         txtNama.setBackground(new java.awt.Color(51, 153, 255));
         txtNama.setText("Nama Panjang");
-        txtNama.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
 
         labelAlamat.setText("Alamat               :");
 
@@ -143,7 +144,7 @@ public class Profile extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelnama)
+                    .addComponent(labelnama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelAlamat)
                     .addComponent(labelNohp)
                     .addComponent(labelJk))
@@ -170,7 +171,7 @@ public class Profile extends javax.swing.JFrame {
                         .addGap(125, 125, 125)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtNama)
-                            .addComponent(labelnama))
+                            .addComponent(labelnama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(49, 49, 49)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtAlamat)
