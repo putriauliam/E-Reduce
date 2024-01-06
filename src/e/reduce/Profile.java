@@ -3,12 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package e.reduce;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.PreparedStatement;
-
+import java.sql.Statement;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 /**
  *
  * @author user
@@ -18,10 +21,19 @@ public class Profile extends javax.swing.JFrame {
     /**
      * Creates new form Profile
      */
-    public Profile() {
-        
+private String userEmail;
+
+    public Profile(String email) {
+        this.userEmail = email;
         initComponents();
+        
     }
+    
+    public void setUserEmail(String email) {
+        this.userEmail = email;
+        
+    }
+    
     
     
 
@@ -52,10 +64,11 @@ public class Profile extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Halaman Profile");
+        setPreferredSize(new java.awt.Dimension(800, 500));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setPreferredSize(new java.awt.Dimension(790, 500));
+        jPanel1.setPreferredSize(new java.awt.Dimension(800, 500));
 
         jPanel2.setBackground(new java.awt.Color(51, 153, 255));
         jPanel2.setPreferredSize(new java.awt.Dimension(250, 500));
@@ -96,11 +109,12 @@ public class Profile extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(user)
+                .addGap(100, 100, 100))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
-                        .addComponent(LogoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addComponent(jLabel1))
@@ -108,12 +122,11 @@ public class Profile extends javax.swing.JFrame {
                         .addGap(21, 21, 21)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Category, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(EditProfileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(EditProfileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addComponent(LogoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(25, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(user)
-                .addGap(100, 100, 100))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,9 +139,9 @@ public class Profile extends javax.swing.JFrame {
                 .addComponent(EditProfileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(Category, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 182, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
                 .addComponent(LogoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
+                .addGap(49, 49, 49))
         );
 
         labelnama.setText("Nama                 :");
@@ -156,7 +169,7 @@ public class Profile extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 148, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelnama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelAlamat)
@@ -203,17 +216,15 @@ public class Profile extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(0, 2, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(0, 12, Short.MAX_VALUE))
         );
 
         pack();
@@ -237,21 +248,57 @@ public class Profile extends javax.swing.JFrame {
         txtNohp.setText(no_hp);
     }
     
+    
     private void EditProfileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditProfileBtnActionPerformed
-       
-       EditProfile EditProfileFrame = new EditProfile();
-       EditProfileFrame.setVisible(true);
-       EditProfileFrame.pack();
-       EditProfileFrame.setLocationRelativeTo(null);
-       this.dispose();
+    String name = null, alamat = null, jeniskelamin = null, no_hp = null, passDb, query;
+    String SUrl, SUser, SPass;
+    int notFound = 0;
+
+    SUrl = "jdbc:MySQL://localhost:3306/java_users_db";
+    SUser = "root";
+    SPass = "";
+
+    try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
+        Statement st = con.createStatement();
+
+        query = "SELECT * FROM user WHERE email= '" + userEmail + "' ";
+        ResultSet rs = st.executeQuery(query);
+
+        while (rs.next()) {
+            passDb = rs.getString("password");
+            name = rs.getString("name");
+            alamat = rs.getString("alamat");
+            jeniskelamin = rs.getString("jeniskelamin");
+            no_hp = rs.getString("no_hp");
+            notFound = 1;
+        }
+
+        if (notFound == 1) {
+            EditProfile EditProfileFrame = new EditProfile(userEmail);
+            EditProfileFrame.setUser(name);
+            EditProfileFrame.setAlamat(alamat);
+            EditProfileFrame.setNohp(no_hp);
+            EditProfileFrame.setJk(jeniskelamin);
+            EditProfileFrame.setVisible(true);
+            EditProfileFrame.pack();
+            EditProfileFrame.setLocationRelativeTo(null);
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(new JFrame(), "Email atau Password Salah", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    } catch (Exception e) {
+        System.out.println("Error: " + e.getMessage());
+    }
     }//GEN-LAST:event_EditProfileBtnActionPerformed
 
     private void LogoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutBtnActionPerformed
-       Login LoginFrame = new Login();
-       LoginFrame.setVisible(true);
-       LoginFrame.pack();
-       LoginFrame.setLocationRelativeTo(null);
-       this.dispose();
+        Login loginFrame = new Login();
+        loginFrame.setVisible(true);
+        loginFrame.pack();
+        loginFrame.setLocationRelativeTo(null);
+        dispose();
     }//GEN-LAST:event_LogoutBtnActionPerformed
 
     private void CategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CategoryActionPerformed

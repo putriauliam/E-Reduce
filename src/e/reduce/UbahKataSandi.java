@@ -8,6 +8,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 /**
  *
@@ -15,10 +16,10 @@ import javax.swing.JOptionPane;
  */
 public class UbahKataSandi extends javax.swing.JFrame {
 
-    /**
-     * Creates new form UbahKataSandi
-     */
-    public UbahKataSandi() {
+    private String userEmail;
+     
+    public UbahKataSandi(String email) {
+        this.userEmail = email;
         initComponents();
     }
 
@@ -38,12 +39,12 @@ public class UbahKataSandi extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        SimpanBtn = new javax.swing.JButton();
+        PwField2 = new javax.swing.JPasswordField();
+        PwField1 = new javax.swing.JPasswordField();
+        PwField3 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ubah Kata Sandi");
@@ -88,37 +89,19 @@ public class UbahKataSandi extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Kata Sandi Lama");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel4.setText("Kata Sandi Baru");
-
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setText("Konfirmasi Kata Sandi ");
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        SimpanBtn.setBackground(new java.awt.Color(51, 153, 255));
+        SimpanBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        SimpanBtn.setForeground(new java.awt.Color(255, 255, 255));
+        SimpanBtn.setText("Kirim");
+        SimpanBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setBackground(new java.awt.Color(51, 153, 255));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Kirim");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                SimpanBtnActionPerformed(evt);
             }
         });
 
@@ -127,24 +110,24 @@ public class UbahKataSandi extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(56, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(57, 57, 57))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(44, 44, 44)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel3)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(PwField1)
+                            .addComponent(PwField2)
+                            .addComponent(PwField3, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(137, 137, 137)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(43, Short.MAX_VALUE))
+                        .addComponent(SimpanBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,18 +136,18 @@ public class UbahKataSandi extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(31, 31, 31)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(PwField1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(PwField2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(PwField3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(SimpanBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(70, Short.MAX_VALUE))
         );
 
@@ -187,114 +170,72 @@ public class UbahKataSandi extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    private void SimpanBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SimpanBtnActionPerformed
+String kataSandiLama = PwField1.getText();
+        String kataSandiBaru = PwField2.getText();
+        String konfirmasiKataSandi = PwField3.getText();
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+        String SUrl, SUser, SPass;
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+        SUrl = "jdbc:MySQL://localhost:3306/java_users_db";
+        SUser = "root";
+        SPass = "";
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    String kataSandiLama = jTextField1.getText();
-    String kataSandiBaru = jTextField2.getText();
-    String konfirmasiKataSandi = jTextField3.getText();
-    
-    // Kode untuk menghubungkan ke database dan memverifikasi kata sandi lama
-    // Disini, Anda harus menggantikan "username" dengan nama pengguna yang sedang login.
-    String query = "SELECT password FROM user WHERE name = ?";
-    // Gunakan PreparedStatement untuk menghindari SQL injection
-    try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_users_db", 
-            "root", 
-            "");
-         PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-        
-        preparedStatement.setString(1, "name"); // Gantikan "username" dengan nama pengguna yang sedang login.
-        ResultSet resultSet = preparedStatement.executeQuery();
-        
-        if (resultSet.next()) {
-            String savedPassword = resultSet.getString("password");
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
             
-            if (savedPassword.equals(kataSandiLama)) {
-                if (kataSandiBaru.equals(konfirmasiKataSandi)) {
-                    // Jika kata sandi lama cocok dan kata sandi baru sama dengan konfirmasi
-                    String updateQuery = "UPDATE user SET password = ? WHERE name = ?";
-                    try (PreparedStatement updateStatement = connection.prepareStatement(updateQuery)) {
-                        updateStatement.setString(1, kataSandiBaru);
-                        updateStatement.setString(2, "name"); // Gantikan "username" dengan nama pengguna yang sedang login.
-                        
-                        updateStatement.executeUpdate();
-                        
-                        // Pesan sukses
-                        JOptionPane.showMessageDialog(this, "Kata sandi berhasil diperbarui!");
-                        
-                        // Bersihkan isian form
-                        jTextField1.setText("");
-                        jTextField2.setText("");
-                        jTextField3.setText("");
+            String query = "SELECT * FROM user WHERE email = ?";
+            try (PreparedStatement preparedStatement = con.prepareStatement(query)) {
+                preparedStatement.setString(1, userEmail);
+                ResultSet rs = preparedStatement.executeQuery();
+
+                if (rs.next()) {
+                    String savedPassword = rs.getString("password");
+
+                    if (savedPassword.equals(kataSandiLama)) {
+                        if (kataSandiBaru.equals(konfirmasiKataSandi)) {
+                            String updateQuery = "UPDATE user SET password = ? WHERE email = ?";
+                            try (PreparedStatement updateStatement = con.prepareStatement(updateQuery)) {
+                                updateStatement.setString(1, kataSandiBaru);
+                                updateStatement.setString(2, userEmail);
+
+                                updateStatement.executeUpdate();
+
+                                JOptionPane.showMessageDialog(this, "Kata sandi berhasil diperbarui!");
+
+                                PwField1.setText("");
+                                PwField2.setText("");
+                                PwField3.setText("");
+                                
+                                Login LoginFrame = new Login();
+                                LoginFrame.setVisible(true);
+                                LoginFrame.pack();
+                                LoginFrame.setLocationRelativeTo(null);
+                                this.dispose();
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Kata sandi baru dan konfirmasi tidak cocok!");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Kata sandi lama salah!");
                     }
                 } else {
-                    // Jika kata sandi baru dan konfirmasi tidak cocok
-                    JOptionPane.showMessageDialog(this, "Kata sandi baru dan konfirmasi tidak cocok!");
-                }
-            } else {
-                // Jika kata sandi lama salah
-                JOptionPane.showMessageDialog(this, "Kata sandi lama salah!");
-            }
-        } else {
-            // Jika pengguna tidak ditemukan
-            JOptionPane.showMessageDialog(this, "Pengguna tidak ditemukan!");
-        }
-    } catch (SQLException e) {
-        e.printStackTrace();
-        JOptionPane.showMessageDialog(this, "Terjadi kesalahan saat memperbarui kata sandi!");
-    }
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+                    JOptionPane.showMessageDialog(this, "Pengguna tidak ditemukan!");
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UbahKataSandi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UbahKataSandi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UbahKataSandi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UbahKataSandi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Terjadi kesalahan saat memperbarui kata sandi!");
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+    }//GEN-LAST:event_SimpanBtnActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new UbahKataSandi().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
+    private javax.swing.JPasswordField PwField1;
+    private javax.swing.JPasswordField PwField2;
+    private javax.swing.JPasswordField PwField3;
+    private javax.swing.JButton SimpanBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -304,8 +245,5 @@ public class UbahKataSandi extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
 }
