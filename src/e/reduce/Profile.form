@@ -69,17 +69,14 @@
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtNotelp" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtJk" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtAlamat" min="-2" pref="151" max="-2" attributes="0"/>
+                              <Component id="txtNohp" alignment="0" min="-2" pref="151" max="-2" attributes="0"/>
+                              <Component id="txtJk" alignment="0" min="-2" pref="151" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                           <Component id="txtNama" min="-2" pref="153" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtAlamat" min="-2" pref="151" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
@@ -99,18 +96,18 @@
                           </Group>
                           <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtAlamat" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtAlamat" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
                               <Component id="labelAlamat" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtNotelp" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="labelNohp" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtNohp" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtJk" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="labelJk" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtJk" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -136,10 +133,6 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                              <Component id="EditProfileBtn" min="-2" pref="204" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
                               <Component id="LogoutBtn" min="-2" pref="93" max="-2" attributes="0"/>
                           </Group>
@@ -148,11 +141,19 @@
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
-                              <Component id="user" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="Category" min="-2" pref="204" max="-2" attributes="0"/>
+                                  <Component id="EditProfileBtn" min="-2" pref="204" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                       <EmptySpace pref="25" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="user" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -161,11 +162,13 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="user" min="-2" pref="38" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                       <Component id="EditProfileBtn" min="-2" pref="41" max="-2" attributes="0"/>
-                      <EmptySpace pref="225" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="Category" min="-2" pref="41" max="-2" attributes="0"/>
+                      <EmptySpace pref="182" max="32767" attributes="0"/>
                       <Component id="LogoutBtn" min="-2" pref="41" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                   </Group>
@@ -192,7 +195,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Nama User"/>
+                <Property name="text" type="java.lang.String" value="Nama"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JToggleButton" name="EditProfileBtn">
@@ -215,6 +218,17 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LogoutBtnActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="Category">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Category"/>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[80, 23]"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CategoryActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -246,7 +260,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="txtAlamat">
           <Properties>
-            <Property name="text" type="java.lang.String" value="data alamat"/>
+            <Property name="text" type="java.lang.String" value="Tidak Ada data"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="labelNohp">
@@ -254,19 +268,19 @@
             <Property name="text" type="java.lang.String" value="No HP                 :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="txtNotelp">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="data notelp"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JLabel" name="labelJk">
           <Properties>
             <Property name="text" type="java.lang.String" value="Jenis Kelamin   :"/>
           </Properties>
         </Component>
+        <Component class="javax.swing.JLabel" name="txtNohp">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Tidak Ada data"/>
+          </Properties>
+        </Component>
         <Component class="javax.swing.JLabel" name="txtJk">
           <Properties>
-            <Property name="text" type="java.lang.String" value="data jenis kelamin"/>
+            <Property name="text" type="java.lang.String" value="Tidak Ada data"/>
           </Properties>
         </Component>
       </SubComponents>
