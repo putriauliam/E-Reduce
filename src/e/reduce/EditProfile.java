@@ -209,11 +209,40 @@ public class EditProfile extends javax.swing.JFrame {
 
     private void ChangePwActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangePwActionPerformed
         // TODO add your handling code here:
-        UbahKataSandi ubahKataSandiFrame = new UbahKataSandi();
+    String name = null, alamat = null, jeniskelamin = null, no_hp = null, passDb, query;
+    String SUrl, SUser, SPass;
+    int notFound = 0;
+
+    SUrl = "jdbc:MySQL://localhost:3306/java_users_db";
+    SUser = "root";
+    SPass = "";
+
+    try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
+        Statement st = con.createStatement();
+
+        query = "SELECT * FROM user WHERE email= '" + userEmail + "' ";
+        ResultSet rs = st.executeQuery(query);
+
+        while (rs.next()) {
+            passDb = rs.getString("password");
+            notFound = 1;
+        }
+
+        if (notFound == 1) {
+        UbahKataSandi ubahKataSandiFrame = new UbahKataSandi(userEmail);
         ubahKataSandiFrame.setVisible(true);
         ubahKataSandiFrame.pack();
         ubahKataSandiFrame.setLocationRelativeTo(null);
         dispose();
+        } else {
+            JOptionPane.showMessageDialog(new JFrame(), "Email atau Password Salah", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    } catch (Exception e) {
+        System.out.println("Error: " + e.getMessage());
+    }
+
     }//GEN-LAST:event_ChangePwActionPerformed
 
     private void txtNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaActionPerformed
