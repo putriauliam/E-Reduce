@@ -206,12 +206,14 @@ public class UbahKataSandi extends javax.swing.JFrame {
     
     // Kode untuk menghubungkan ke database dan memverifikasi kata sandi lama
     // Disini, Anda harus menggantikan "username" dengan nama pengguna yang sedang login.
-    String query = "SELECT password FROM user WHERE username = ?";
+    String query = "SELECT password FROM user WHERE name = ?";
     // Gunakan PreparedStatement untuk menghindari SQL injection
-    try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/your_database", "root", "");
+    try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_users_db", 
+            "root", 
+            "");
          PreparedStatement preparedStatement = connection.prepareStatement(query)) {
         
-        preparedStatement.setString(1, "username"); // Gantikan "username" dengan nama pengguna yang sedang login.
+        preparedStatement.setString(1, "name"); // Gantikan "username" dengan nama pengguna yang sedang login.
         ResultSet resultSet = preparedStatement.executeQuery();
         
         if (resultSet.next()) {
@@ -220,10 +222,10 @@ public class UbahKataSandi extends javax.swing.JFrame {
             if (savedPassword.equals(kataSandiLama)) {
                 if (kataSandiBaru.equals(konfirmasiKataSandi)) {
                     // Jika kata sandi lama cocok dan kata sandi baru sama dengan konfirmasi
-                    String updateQuery = "UPDATE user SET password = ? WHERE username = ?";
+                    String updateQuery = "UPDATE user SET password = ? WHERE name = ?";
                     try (PreparedStatement updateStatement = connection.prepareStatement(updateQuery)) {
                         updateStatement.setString(1, kataSandiBaru);
-                        updateStatement.setString(2, "username"); // Gantikan "username" dengan nama pengguna yang sedang login.
+                        updateStatement.setString(2, "name"); // Gantikan "username" dengan nama pengguna yang sedang login.
                         
                         updateStatement.executeUpdate();
                         
