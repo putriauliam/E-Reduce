@@ -213,7 +213,7 @@ public class Login extends javax.swing.JFrame {
             Statement st = con.createStatement();
 
             if ("".equals(email.getText()) || "".equals(password.getText())) {
-                JOptionPane.showMessageDialog(new JFrame(), "Email and Password are required", "Error",
+                JOptionPane.showMessageDialog(new JFrame(), "Email dan Kata Sandi harus diisi", "Error",
                         JOptionPane.ERROR_MESSAGE);
             } else {
                 Email = email.getText();
@@ -242,7 +242,7 @@ public class Login extends javax.swing.JFrame {
                     ProfileFrame.setLocationRelativeTo(null);
                     dispose();
                 } else {
-                    JOptionPane.showMessageDialog(new JFrame(), "Incorrect Email or Password", "Error",
+                    JOptionPane.showMessageDialog(new JFrame(), "Email atau Kata Sandi salah", "Error",
                             JOptionPane.ERROR_MESSAGE);
                 }
             }
