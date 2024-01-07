@@ -201,13 +201,13 @@ public class SignUp extends javax.swing.JFrame {
             Connection con = DriverManager.getConnection(SUrl,SUser,SPass);
             Statement st = con.createStatement();
              if("".equals(fname.getText())){
-                    JOptionPane.showMessageDialog(new JFrame(), "Name is required", "Error ",
+                    JOptionPane.showMessageDialog(new JFrame(), "Nama Pengguna Harus Diisi", "Error ",
                             JOptionPane.ERROR_MESSAGE);
                 }else if ("".equals(emailAddress.getText())){
-                    JOptionPane.showMessageDialog(new JFrame(), "Email Address is required", "Error ",
+                    JOptionPane.showMessageDialog(new JFrame(), "Email Harus Diisi", "Error ",
                             JOptionPane.ERROR_MESSAGE);
                 }else if("".equals(fpassword.getText())){
-                    JOptionPane.showMessageDialog(new JFrame(), "Password is required", "Error ",
+                    JOptionPane.showMessageDialog(new JFrame(), "Kata Sandi Harus Diisi", "Error ",
                             JOptionPane.ERROR_MESSAGE);
                 }else {
                     name = fname.getText();
@@ -222,7 +222,7 @@ public class SignUp extends javax.swing.JFrame {
                     fname.setText("");
                     emailAddress.setText("");
                     fpassword.setText("");
-                    showMessageDialog(null,"Account Has Been Created Successfully!");
+                    showMessageDialog(null,"Akun Telah Berhasil Dibuat!");
                     Login LoginFrame = new Login();
                     LoginFrame.setVisible(true);
                     LoginFrame.pack();
