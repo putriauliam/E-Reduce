@@ -9,7 +9,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
+
 /**
  *
  * @author lenovo
@@ -45,6 +48,7 @@ public class UbahKataSandi extends javax.swing.JFrame {
         PwField2 = new javax.swing.JPasswordField();
         PwField1 = new javax.swing.JPasswordField();
         PwField3 = new javax.swing.JPasswordField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ubah Kata Sandi");
@@ -105,6 +109,13 @@ public class UbahKataSandi extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Kembali");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -126,13 +137,18 @@ public class UbahKataSandi extends javax.swing.JFrame {
                             .addComponent(PwField3, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(137, 137, 137)
-                        .addComponent(SimpanBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(81, Short.MAX_VALUE))
+                        .addComponent(SimpanBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jButton1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(52, 52, 52)
+                .addGap(11, 11, 11)
+                .addComponent(jButton1)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addGap(31, 31, 31)
                 .addComponent(jLabel3)
@@ -171,7 +187,7 @@ public class UbahKataSandi extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SimpanBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SimpanBtnActionPerformed
-String kataSandiLama = PwField1.getText();
+        String kataSandiLama = PwField1.getText();
         String kataSandiBaru = PwField2.getText();
         String konfirmasiKataSandi = PwField3.getText();
 
@@ -228,7 +244,55 @@ String kataSandiLama = PwField1.getText();
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Terjadi kesalahan saat memperbarui kata sandi!");
         }
+        
     }//GEN-LAST:event_SimpanBtnActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+          String name = null, alamat = null, jeniskelamin = null, no_hp = null, passDb, query;
+    String SUrl, SUser, SPass;
+    int notFound = 0;
+
+    SUrl = "jdbc:MySQL://localhost:3306/java_users_db";
+    SUser = "root";
+    SPass = "";
+
+    try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
+        Statement st = con.createStatement();
+
+        query = "SELECT * FROM user WHERE email= '" + userEmail + "' ";
+        ResultSet rs = st.executeQuery(query);
+
+        while (rs.next()) {
+            passDb = rs.getString("password");
+            name = rs.getString("name");
+            alamat = rs.getString("alamat");
+            jeniskelamin = rs.getString("jeniskelamin");
+            no_hp = rs.getString("no_hp");
+            notFound = 1;
+        }
+
+        if (notFound == 1) {
+            EditProfile EditProfileFrame = new EditProfile(userEmail);
+            
+            EditProfileFrame.setUser(name);
+            EditProfileFrame.setAlamat(alamat);
+            EditProfileFrame.setNohp(no_hp);
+            EditProfileFrame.setJk(jeniskelamin);
+            
+            EditProfileFrame.setVisible(true);
+            EditProfileFrame.pack();
+            EditProfileFrame.setLocationRelativeTo(null);
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(new JFrame(), "Email atau Password Salah", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    } catch (Exception e) {
+        System.out.println("Error: " + e.getMessage());
+    }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -236,6 +300,7 @@ String kataSandiLama = PwField1.getText();
     private javax.swing.JPasswordField PwField2;
     private javax.swing.JPasswordField PwField3;
     private javax.swing.JButton SimpanBtn;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
