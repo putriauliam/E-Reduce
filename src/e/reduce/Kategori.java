@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package e.reduce;
-
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 /**
  *
  * @author ASUS
@@ -19,17 +21,29 @@ javax.swing.JComboBox<String> txtjeniskelamin;
     /**
      * Creates new form Kategori
      */
+   
+    
     public Kategori() {
         txtNama = new javax.swing.JTextField();
         txtAlamat = new javax.swing.JTextField();
         txtNohp = new javax.swing.JTextField();
         txtjeniskelamin = new javax.swing.JComboBox<>();
-        
+
         txtjeniskelamin.addItem("Laki-laki");
         txtjeniskelamin.addItem("Perempuan");
 
         initComponents();
     }
+    
+    public class DatabaseConnection {
+    private static final String URL = "jdbc:mysql://localhost:3306/java_users_db";
+    private static final String USER = "username_database";
+    private static final String PASSWORD = "password_database";
+
+    public static Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(URL, USER, PASSWORD);
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -50,13 +64,10 @@ javax.swing.JComboBox<String> txtjeniskelamin;
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-
         kembalikeprofile = new javax.swing.JButton();
 
-        jButton4 = new javax.swing.JButton();
-
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(800, 500));
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setName("Kategori"); // NOI18N
@@ -74,25 +85,20 @@ javax.swing.JComboBox<String> txtjeniskelamin;
         jLabel2.setText("Kategori Sampah Elektronik");
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lampuenggal.png"))); // NOI18N
-
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/kulkasnewpisan.png"))); // NOI18N
-
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/laptop_baro.png"))); // NOI18N
-
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -112,7 +118,6 @@ javax.swing.JComboBox<String> txtjeniskelamin;
         kembalikeprofile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 kembalikeprofileActionPerformed(evt);
-
             }
         });
 
@@ -121,49 +126,32 @@ javax.swing.JComboBox<String> txtjeniskelamin;
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-
-                .addGap(102, 102, 102)
-                .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(185, 185, 185)
-                .addComponent(jButton1)
-                .addGap(105, 105, 105))
-            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(209, 209, 209)
                         .addComponent(jLabel2))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(31, 31, 31)
-                        .addComponent(kembalikeprofile)
-                        .addGap(134, 134, 134)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)))
-
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jButton3)
+                                .addGap(26, 26, 26)
+                                .addComponent(jButton2)
+                                .addGap(26, 26, 26)
+                                .addComponent(jButton1))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(kembalikeprofile)
+                                .addGap(139, 139, 139)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(34, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(78, 78, 78)
+                .addGap(61, 61, 61)
                 .addComponent(jLabel3)
-                .addGap(109, 109, 109)
+                .addGap(127, 127, 127)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel5)
-                .addGap(120, 120, 120))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(240, 240, 240)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                        .addComponent(jButton2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)))
-                .addGap(47, 47, 47))
+                .addGap(106, 106, 106))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,10 +161,8 @@ javax.swing.JComboBox<String> txtjeniskelamin;
                         .addContainerGap()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-
                         .addGap(20, 20, 20)
                         .addComponent(kembalikeprofile)))
-
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addGap(52, 52, 52)
@@ -185,11 +171,11 @@ javax.swing.JComboBox<String> txtjeniskelamin;
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4))
-                .addContainerGap(292, Short.MAX_VALUE))
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2);
@@ -199,7 +185,9 @@ javax.swing.JComboBox<String> txtjeniskelamin;
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 330, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,35 +231,35 @@ javax.swing.JComboBox<String> txtjeniskelamin;
 
     private void kembalikeprofileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kembalikeprofileActionPerformed
         // TODO add your handling code here:
-        Profile profileFrame = new Profile(userEmail);
-        String name = txtNama.getText();
-        String alamat = txtAlamat.getText();
-        String no_hp = txtNohp.getText();
-        String jk = txtjeniskelamin.getSelectedItem() != null ? txtjeniskelamin.getSelectedItem().toString() : "Unknown";
+    Profile profileFrame = new Profile(userEmail);
+    
+    profileFrame.setUser(txtNama.getText());
+    profileFrame.setAlamat(txtAlamat.getText());
+    profileFrame.setNohp(txtNohp.getText());
+    profileFrame.setJk(txtjeniskelamin.getSelectedItem().toString());
 
-        profileFrame.setUser(txtNama.getText());
-        profileFrame.setAlamat(txtAlamat.getText());
-        profileFrame.setNohp(txtNohp.getText());
-        profileFrame.setJk(txtjeniskelamin.getSelectedItem().toString());
-
-
-        profileFrame.setVisible(true);
-        profileFrame.pack();
-        profileFrame.setLocationRelativeTo(null);
-        dispose();
-
+    
+    profileFrame.setVisible(true);
+    profileFrame.pack();
+    profileFrame.setLocationRelativeTo(null);
+    dispose();
     }//GEN-LAST:event_kembalikeprofileActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        try {
+        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            if ("Nimbus".equals(info.getName())) {
+                javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                break;
+            }
+        }
+    } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+        java.util.logging.Logger.getLogger(Kategori.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    }//<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
@@ -305,7 +293,6 @@ javax.swing.JComboBox<String> txtjeniskelamin;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
