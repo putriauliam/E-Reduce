@@ -9,11 +9,25 @@ package e.reduce;
  * @author ASUS
  */
 public class Kategori extends javax.swing.JFrame {
+private String userEmail;
+private javax.swing.JTextField txtNama;
+private javax.swing.JTextField txtAlamat;
+private javax.swing.JTextField txtNohp;
+javax.swing.JComboBox<String> txtjeniskelamin;
+
 
     /**
      * Creates new form Kategori
      */
     public Kategori() {
+        txtNama = new javax.swing.JTextField();
+        txtAlamat = new javax.swing.JTextField();
+        txtNohp = new javax.swing.JTextField();
+        txtjeniskelamin = new javax.swing.JComboBox<>();
+        
+        txtjeniskelamin.addItem("Laki-laki");
+        txtjeniskelamin.addItem("Perempuan");
+
         initComponents();
     }
 
@@ -36,7 +50,11 @@ public class Kategori extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+
+        kembalikeprofile = new javax.swing.JButton();
+
         jButton4 = new javax.swing.JButton();
+
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,20 +74,25 @@ public class Kategori extends javax.swing.JFrame {
         jLabel2.setText("Kategori Sampah Elektronik");
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lampuenggal.png"))); // NOI18N
+
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
+
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/kulkasnewpisan.png"))); // NOI18N
+
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
+
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/laptop_baro.png"))); // NOI18N
+
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -85,12 +108,11 @@ public class Kategori extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setText("Lampu");
 
-        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(51, 102, 255));
-        jButton4.setText("Profil");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        kembalikeprofile.setText("Kembali");
+        kembalikeprofile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                kembalikeprofileActionPerformed(evt);
+
             }
         });
 
@@ -99,15 +121,32 @@ public class Kategori extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(209, 209, 209)
-                .addComponent(jLabel2)
+
+                .addGap(102, 102, 102)
+                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(185, 185, 185)
+                .addComponent(jButton1)
+                .addGap(105, 105, 105))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(209, 209, 209)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(kembalikeprofile)
+                        .addGap(134, 134, 134)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)))
+
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(78, 78, 78)
                 .addComponent(jLabel3)
                 .addGap(109, 109, 109)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addGap(120, 120, 120))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -134,21 +173,23 @@ public class Kategori extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jButton4)))
+
+                        .addGap(20, 20, 20)
+                        .addComponent(kembalikeprofile)))
+
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addGap(52, 52, 52)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1)
-                    .addComponent(jButton3))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(jLabel5)
                     .addComponent(jLabel4))
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addContainerGap(292, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2);
@@ -173,17 +214,53 @@ public class Kategori extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        DetailMonitor detailMonitorFrame = new DetailMonitor();
+        detailMonitorFrame.setVisible(true);
+        detailMonitorFrame.pack();
+        detailMonitorFrame.setLocationRelativeTo(null);
+        dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        DetailPertukaranSuhu detailPertukaranSuhuFrame = new DetailPertukaranSuhu();
+        detailPertukaranSuhuFrame.setVisible(true);
+        detailPertukaranSuhuFrame.pack();
+        detailPertukaranSuhuFrame.setLocationRelativeTo(null);
+        dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        DetailLampu detailLampuFrame = new DetailLampu();
+        detailLampuFrame.setVisible(true);
+        detailLampuFrame.pack();
+        detailLampuFrame.setLocationRelativeTo(null);
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void kembalikeprofileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kembalikeprofileActionPerformed
+        // TODO add your handling code here:
+        Profile profileFrame = new Profile(userEmail);
+        String name = txtNama.getText();
+        String alamat = txtAlamat.getText();
+        String no_hp = txtNohp.getText();
+        String jk = txtjeniskelamin.getSelectedItem() != null ? txtjeniskelamin.getSelectedItem().toString() : "Unknown";
+
+        profileFrame.setUser(txtNama.getText());
+        profileFrame.setAlamat(txtAlamat.getText());
+        profileFrame.setNohp(txtNohp.getText());
+        profileFrame.setJk(txtjeniskelamin.getSelectedItem().toString());
+
+
+        profileFrame.setVisible(true);
+        profileFrame.pack();
+        profileFrame.setLocationRelativeTo(null);
+        dispose();
+
+    }//GEN-LAST:event_kembalikeprofileActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
@@ -236,5 +313,6 @@ public class Kategori extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton kembalikeprofile;
     // End of variables declaration//GEN-END:variables
 }
