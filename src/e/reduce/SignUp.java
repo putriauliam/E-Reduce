@@ -223,6 +223,11 @@ public class SignUp extends javax.swing.JFrame {
                     emailAddress.setText("");
                     fpassword.setText("");
                     showMessageDialog(null,"Account Has Been Created Successfully!");
+                    Login LoginFrame = new Login();
+                    LoginFrame.setVisible(true);
+                    LoginFrame.pack();
+                    LoginFrame.setLocationRelativeTo(null);
+                    this.dispose();
                 }
         }catch (Exception e){
                 System.out.println("Error" + e.getMessage());

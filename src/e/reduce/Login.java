@@ -20,7 +20,6 @@ import static javax.swing.JOptionPane.showMessageDialog;
  * @author user
  */
 public class Login extends javax.swing.JFrame {
-
     /**
      * Creates new form Login
      */
@@ -201,63 +200,64 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_passwordActionPerformed
 
     private void LoginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginBtnActionPerformed
-        //System.out.println("Sign Up btn Clicked");
-        String name,Email,Password,query,passDb = null, namef = null;
-        String SUrl,SUser,SPass;
-          SUrl = "jdbc:MySQL://localhost:3306/java_users_db";
-          SUser = "root";
-          SPass = "";
-          int notFound = 0;
-        try{
+         String name, Email, Password, query, passDb = null, namef = null, alamat = null, jeniskelamin = null, no_hp = null;
+        String SUrl, SUser, SPass;
+        SUrl = "jdbc:MySQL://localhost:3306/java_users_db";
+        SUser = "root";
+        SPass = "";
+        int notFound = 0;
+
+        try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection(SUrl,SUser,SPass);
+            Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
             Statement st = con.createStatement();
-             if ("".equals(email.getText())){
-                    JOptionPane.showMessageDialog(new JFrame(), "Email Address is required", "Error ",
+
+            if ("".equals(email.getText()) || "".equals(password.getText())) {
+                JOptionPane.showMessageDialog(new JFrame(), "Email and Password are required", "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            } else {
+                Email = email.getText();
+                Password = password.getText();
+
+                query = "SELECT * FROM user WHERE email= '" + Email + "' ";
+                ResultSet rs = st.executeQuery(query);
+
+                while (rs.next()) {
+                    passDb = rs.getString("password");
+                    namef = rs.getString("name");
+                    alamat = rs.getString("alamat");
+                    jeniskelamin = rs.getString("jeniskelamin");
+                    no_hp = rs.getString("no_hp");
+                    notFound = 1;
+                }
+
+                if (notFound == 1 && Password.equals(passDb)) {
+                    Profile ProfileFrame = new Profile(Email);
+                    ProfileFrame.setUser(namef);
+                    ProfileFrame.setAlamat(alamat);
+                    ProfileFrame.setNohp(no_hp);
+                    ProfileFrame.setJk(jeniskelamin);
+                    ProfileFrame.setVisible(true);
+                    ProfileFrame.pack();
+                    ProfileFrame.setLocationRelativeTo(null);
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(new JFrame(), "Incorrect Email or Password", "Error",
                             JOptionPane.ERROR_MESSAGE);
-                }else if("".equals(password.getText())){
-                    JOptionPane.showMessageDialog(new JFrame(), "Password is required", "Error ",
-                            JOptionPane.ERROR_MESSAGE);
-                }else {
-                    Email = email.getText();
-                    Password = password.getText();
-                    
-                    query = "SELECT * FROM user WHERE email= '"+Email+"' ";
-                    ResultSet rs = st.executeQuery(query);
-                    while(rs.next()){
-                        passDb = rs.getString("password");
-                        namef = rs.getString("name");
-                        notFound = 1;
-                    }
-                    if(notFound == 1 && Password.equals(passDb)){
-                        
-                        Profile ProfileFrame = new Profile();
-                        ProfileFrame.setUser(namef);
-                        ProfileFrame.setVisible(true);
-                        ProfileFrame.pack();
-                        ProfileFrame.setLocationRelativeTo(null);
-                        this.dispose();
-                    }else{
-                        JOptionPane.showMessageDialog(new JFrame(), "Incorrect Email or Password", "Error ",
-                            JOptionPane.ERROR_MESSAGE);
-                    }
-                    
-                    st.execute(query);
-                    password.setText("");                }
-        }catch (Exception e){
-                System.out.println("Error" + e.getMessage());
-            
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
         }
-   
     }//GEN-LAST:event_LoginBtnActionPerformed
 
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       SignUp SignUpFrame = new SignUp();
-       SignUpFrame.setVisible(true);
-       SignUpFrame.pack();
-       SignUpFrame.setLocationRelativeTo(null);
-       this.dispose();
+        SignUp SignUpFrame = new SignUp();
+        SignUpFrame.setVisible(true);
+        SignUpFrame.pack();
+        SignUpFrame.setLocationRelativeTo(null);
+        dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
 

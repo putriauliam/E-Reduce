@@ -1,31 +1,42 @@
 package e.reduce;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 public class EditProfile extends javax.swing.JFrame {
+    
+ private String userEmail;
 
+ public EditProfile(String email) {
+    this.userEmail = email;
+    initComponents();
+}
 
-    public EditProfile() {
-        initComponents();
-    }
-
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        fnama = new javax.swing.JTextField();
+        txtNama = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        alamat = new javax.swing.JTextField();
+        txtAlamat = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        no_hp = new javax.swing.JTextField();
-        jeniskelamin = new javax.swing.JComboBox<>();
+        txtNohp = new javax.swing.JTextField();
+        txtjeniskelamin = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        UpdateBtn = new javax.swing.JButton();
+        ChangePw = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Halaman Edit Profile");
@@ -39,25 +50,30 @@ public class EditProfile extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nama                :");
 
-        fnama.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtNama.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtNama.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNamaActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Alamat              :");
 
-        alamat.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtAlamat.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Nomor HP         :");
 
-        no_hp.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtNohp.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jeniskelamin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Laki-Laki", "Perempuan" }));
-        jeniskelamin.setPreferredSize(new java.awt.Dimension(64, 26));
-        jeniskelamin.addActionListener(new java.awt.event.ActionListener() {
+        txtjeniskelamin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Laki-Laki", "Perempuan" }));
+        txtjeniskelamin.setPreferredSize(new java.awt.Dimension(64, 26));
+        txtjeniskelamin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jeniskelaminActionPerformed(evt);
+                txtjeniskelaminActionPerformed(evt);
             }
         });
 
@@ -69,28 +85,6 @@ public class EditProfile extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Edit Profil");
 
-        jTable1.setForeground(new java.awt.Color(51, 0, 255));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Nama", "Alamat", "Nomor Hp", "Jenis Kelamin"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(jTable1);
-
         jButton1.setText("Kembali");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,7 +92,19 @@ public class EditProfile extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Update");
+        UpdateBtn.setText("Update");
+        UpdateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UpdateBtnActionPerformed(evt);
+            }
+        });
+
+        ChangePw.setText("Change Password");
+        ChangePw.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChangePwActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -106,28 +112,29 @@ public class EditProfile extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(397, 397, 397)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel2))
-                        .addGap(41, 41, 41)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(fnama, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(43, 43, 43)
-                                .addComponent(jButton2))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(no_hp, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
-                                .addComponent(alamat, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
-                                .addComponent(jeniskelamin, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 732, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(ChangePw)
+                            .addGap(18, 18, 18)
+                            .addComponent(UpdateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel2))
+                            .addGap(41, 41, 41)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtNohp, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
+                                    .addComponent(txtAlamat, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
+                                    .addComponent(txtjeniskelamin, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -143,23 +150,24 @@ public class EditProfile extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(fnama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                    .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(alamat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtAlamat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(no_hp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNohp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jeniskelamin, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                    .addComponent(txtjeniskelamin, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(UpdateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ChangePw, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(138, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -180,64 +188,133 @@ public class EditProfile extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jeniskelaminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jeniskelaminActionPerformed
+    private void txtjeniskelaminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtjeniskelaminActionPerformed
 
-    }//GEN-LAST:event_jeniskelaminActionPerformed
+    }//GEN-LAST:event_txtjeniskelaminActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+    Profile profileFrame = new Profile(userEmail);
+    profileFrame.setUser(txtNama.getText());
+    profileFrame.setAlamat(txtAlamat.getText());
+    profileFrame.setNohp(txtNohp.getText());
+    profileFrame.setJk(txtjeniskelamin.getSelectedItem().toString());
+
+    
+    profileFrame.setVisible(true);
+    profileFrame.pack();
+    profileFrame.setLocationRelativeTo(null);
+    dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditProfile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditProfile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditProfile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditProfile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
+    private void ChangePwActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangePwActionPerformed
+        // TODO add your handling code here:
+    String name = null, alamat = null, jeniskelamin = null, no_hp = null, passDb, query;
+    String SUrl, SUser, SPass;
+    int notFound = 0;
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new EditProfile().setVisible(true);
-            }
-        });
+    SUrl = "jdbc:MySQL://localhost:3306/java_users_db";
+    SUser = "root";
+    SPass = "";
+
+    try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
+        Statement st = con.createStatement();
+
+        query = "SELECT * FROM user WHERE email= '" + userEmail + "' ";
+        ResultSet rs = st.executeQuery(query);
+
+        while (rs.next()) {
+            passDb = rs.getString("password");
+            notFound = 1;
+        }
+
+        if (notFound == 1) {
+        UbahKataSandi ubahKataSandiFrame = new UbahKataSandi(userEmail);
+        ubahKataSandiFrame.setVisible(true);
+        ubahKataSandiFrame.pack();
+        ubahKataSandiFrame.setLocationRelativeTo(null);
+        dispose();
+        } else {
+            JOptionPane.showMessageDialog(new JFrame(), "Email atau Password Salah", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    } catch (Exception e) {
+        System.out.println("Error: " + e.getMessage());
     }
 
+    }//GEN-LAST:event_ChangePwActionPerformed
+
+    private void txtNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNamaActionPerformed
+
+    private void UpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateBtnActionPerformed
+        // TODO add your handling code here:
+        String name = txtNama.getText();
+    String alamat = txtAlamat.getText();
+    String no_hp = txtNohp.getText();
+    String jeniskelamin = (String) txtjeniskelamin.getSelectedItem();
+
+    String SUrl, SUser, SPass;
+    SUrl = "jdbc:MySQL://localhost:3306/java_users_db";
+    SUser = "root";
+    SPass = "";
+
+    try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
+        Statement st = con.createStatement();
+
+        String query = "UPDATE user SET name='" + name + "', alamat='" + alamat + "', no_hp='" + no_hp + "', jeniskelamin='" + jeniskelamin + "' WHERE email='" + userEmail + "'";
+        int rowsAffected = st.executeUpdate(query);
+
+        if (rowsAffected > 0) {
+            JOptionPane.showMessageDialog(new JFrame(), "Data berhasil diperbarui", "Sukses", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(new JFrame(), "Gagal memperbarui data", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    } catch (Exception e) {
+        System.out.println("Error: " + e.getMessage());
+    }
+    }//GEN-LAST:event_UpdateBtnActionPerformed
+
+
+       public void setUserEmail(String email) {
+        this.userEmail = email;
+        // Gunakan nilai userEmail untuk mengakses data di database atau melakukan operasi lainnya.
+    }
+
+    public void setUser(String name){        
+        txtNama.setText(name);
+    }
+    
+    public void setJk(String jeniskelamin){
+    txtjeniskelamin.setSelectedItem(jeniskelamin);
+    }
+
+        
+    public void setAlamat(String alamat){        
+        txtAlamat.setText(alamat);        
+    }
+    
+    public void setNohp(String no_hp){
+        txtNohp.setText(no_hp);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField alamat;
-    private javax.swing.JTextField fnama;
+    private javax.swing.JButton ChangePw;
+    private javax.swing.JButton UpdateBtn;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JComboBox<String> jeniskelamin;
-    private javax.swing.JTextField no_hp;
+    private javax.swing.JTextField txtAlamat;
+    private javax.swing.JTextField txtNama;
+    private javax.swing.JTextField txtNohp;
+    private javax.swing.JComboBox<String> txtjeniskelamin;
     // End of variables declaration//GEN-END:variables
 }
